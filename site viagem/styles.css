@@ -1,0 +1,147 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  header .logo {
+    font-size: 2.1em;
+    font-weight: bold;
+    color: #6d28d9;
+  }
+  header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  header nav ul li {
+    list-style: none;
+    margin-top: auto;
+  }
+  header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    margin-top: auto;
+  }
+
+  
+  /* Botões de login e signup */
+  .login-btn, .signup-btn {
+    padding: 8px 16px;
+    background-color: #6d28d9;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .signup-btn {
+    background-color: #87009c;
+  }
+  
+  /* Banner principal */
+  .banner {
+    background-image: url('https://palacepraia.com.br/wp-content/uploads/2021/10/viajar-de-aviao.jpeg');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    color: black;
+    padding: 80px 20px;
+  }
+  .banner h1 {
+    font-size: 2.5em;
+  }
+  .banner p {
+    margin-top: 10px;
+    font-size: 1.2em;
+  }
+  .ver-pacotes-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #87009c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+  
+  /* Benefícios */
+  .beneficios {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f5f5f5;
+  }
+  .beneficios h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .beneficio-card {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    margin: 20px;
+  }
+  
+  /* Seções de destinos */
+  .destinos {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .destinos h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  .card-destino {
+    display: inline-block;
+    width: 23%;
+    margin: 10px;
+  }
+  .card-destino img {
+    width: 100%;
+    border-radius: 8px;
+  }
+  
+  /* Avaliações e newsletter */
+  .avaliacoes {
+    padding: 20px;
+    background-color: #f0f4f8;
+    text-align: center;
+  }
+  .newsletter {
+    padding: 30px;
+    text-align: center;
+    background-color: #87009c;
+    color: #fff;
+  }
+  .newsletter input {
+    padding: 10px;
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Rodapé */
+  footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+  }
+  

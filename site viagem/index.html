@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unlimited Travel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logo">Unlimited Travel</div>
+    <nav> 
+      <ul> 
+        <li><a href="#destinos">Destinos</a></li>
+        <li><a href="#pacotes">Pacotes</a></li>
+        <li><a href="#clientes">Clientes</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><button onclick="location.href='login.html'" class="login-btn" >Login</button></li>
+        <li><button onclick="location.href='login.html'" class="signup-btn">Sign Up</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Banner principal -->
+  <section class="banner">
+    <h1>Descubra o mundo com Unlimited Travel!</h1>
+    <p>Pacotes exclusivos para mais de 100 destinos ao redor do mundo.</p>
+    <button class="ver-pacotes-btn">Ver Pacotes</button>
+  </section>
+
+  <!-- Benefícios -->
+  <section class="beneficios">
+    <h2>Porque escolher a Unlimited Travel?</h2>
+    <div class="beneficio-card">
+      <i class="icone">🌎</i>
+      <h3>Pacotes Exclusivos</h3>
+      <p>Viagens personalizadas para todos os destinos do mundo.</p>
+    </div>
+    <div class="beneficio-card">
+      <i class="icone">👥</i>
+      <h3>+ de 5.000 Clientes</h3>
+      <p>Satisfação garantida com excelentes avaliações.</p>
+    </div>
+    <div class="beneficio-card">
+      <i class="icone">✅</i>
+      <h3>Certificado de Segurança</h3>
+      <p>Viagens garantidas com os melhores padrões de segurança.</p>
+    </div>
+  </section>
+
+  <!-- Destinos Internacionais -->
+  <section class="destinos" id="destinos-internacionais">
+    <h2>Destinos Internacionais</h2>
+    <div class="card-destino">
+      <img src="img/zurich.png" alt="Zurich">
+      <h3>Zurich</h3>
+      <p>Suíça</p>
+    </div>
+    <div class="card-destino">
+      <img src="img/roma.png" alt="Roma">
+      <h3>Roma</h3>
+      <p>Itália</p>
+    </div>
+    <div class="card-destino">
+      <img src="img/lisboa.png" alt="Lisboa">
+      <h3>Lisboa</h3>
+      <p>Portugal</p>
+    </div>
+    <div class="card-destino">
+      <img src="img/barcelona.png" alt="Barcelona">
+      <h3>Barcelona</h3>
+      <p>Espanha</p>
+    </div>
+  </section>
+
+  <!-- Destinos Nacionais -->
+  <section class="destinos" id="destinos-nacionais">
+    <h2>Destinos Nacionais</h2>
+    <div class="card-destino">
+      <img src="img/rio.png" alt="Rio de Janeiro">
+      <h3>Rio de Janeiro</h3>
+      <p>Brasil</p>
+    </div>
+    <div class="card-destino">
+      <img src="img/gramado.png" alt="Gramado">
+      <h3>Gramado</h3>
+      <p>Brasil</p>
+    </div>
+    <div class="card-destino">
+      <img src="img/florianopolis.png" alt="Florianópolis">
+      <h3>Florianópolis</h3>
+      <p>Brasil</p>
+    </div>
+    <div class="card-destino">
+        <img src="img/sp.png" alt="São Paulo">
+        <h3>São Paulo</h3>
+        <p>Brasil</p>
+      </div>
+  </section>
+
+  <!-- Avaliações e Newsletter -->
+  <section class="avaliacoes">
+    <h2>Recomendados por mais de 5.000 clientes!</h2>
+    <div class="avaliacao">
+      <p>"A melhor experiência da minha vida! Altamente recomendado."</p>
+      <p><strong>— Cliente Satisfeito</strong></p>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <h2>Assine nossa Newsletter e Receba Promoções Incríveis!</h2>
+    <input type="email" placeholder="Digite seu e-mail">
+    <button onclick="assinarNewsletter()">Assinar</button>
+  </section>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2024 Unlimited Travel - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

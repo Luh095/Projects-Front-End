@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Login e Registro</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tab">
+            <button id="loginTab" class="active" onclick="showForm('login')">Login</button>
+            <button id="registerTab" onclick="showForm('register')">Registrar</button>
+        </div>
+        <div id="loginForm" class="form-container active">
+            <form>
+                <h2>Login</h2>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <button onclick="location.href='index.html'" type="submit" >Entrar</button>
+            </form>
+        </div>
+        <div id="registerForm" class="form-container">
+            <form>
+                <h2>Registrar</h2>
+                <input type="text" placeholder="Nome completo" required>
+                <input type="email" placeholder="E-mail" required>
+                <input type="password" placeholder="Senha" required>
+                <input type="password" placeholder="Confirme sua senha" required>
+                <button type="submit">Registrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showForm(formType) {
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+
+            if (formType === 'login') {
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+            } else {
+                registerTab.classList.add('active');
+                loginTab.classList.remove('active');
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
