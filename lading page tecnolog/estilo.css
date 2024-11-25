@@ -1,0 +1,33 @@
+.course-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    color: white;
+    background: #c31432;
+  }
+  .banner {
+    background: linear-gradient(to right, #c31432, #240b36);
+    color: white;
+    text-align: center;
+    padding: 50px 0;
+    margin-bottom: 30px;
+  }
+
+  .button-voltar {
+    padding: 15px 20px;
+    width: auto;
+    border: solid 2px #780206;
+    border-radius: 20px;
+    color: black;
+    background-color: white;
+    transition: background-color 0.5s ease, color 0.5s ease, transform 0.5s;
+    
+  }
+
+  .button-voltar:hover {
+    color: white;
+    background-color: #d62c48; 
+    transform: scale(1.1); 
+  }
