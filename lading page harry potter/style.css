@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(#000000, #0f9b0f);
+    color: white;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #111;
+  }
+  header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  header .buttons a {
+    padding: 5px 10px;
+    margin-left: 10px;
+    color: black;
+    background: white;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  .main-section {
+    display: flex;                
+    flex-direction: column;      
+    align-items: center;          
+    text-align: center;           
+    padding: 20px;                
+  }
+
+  .main-section h1 {
+    font-size: 2.5em;             
+    margin-bottom: 10px;          
+  }
+
+  .main-section p {
+    font-size: 1.2em;             
+    margin-bottom: 20px;          
+  }
+
+  .main-section button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;          
+  }
+
+  .main-section button:hover {
+    background: #ccc;             
+  }
+
+
+  .reasons {
+    text-align: center;           
+    margin-top: 0;                
+    padding: 20px 0;              
+  }
+
+  .reasons-container {
+    display: flex;                
+    justify-content: center;      
+    gap: 20px;                    
+    flex-wrap: wrap;              
+  }
+
+  .reasons-container div {
+    background: #222;             
+    padding: 15px;
+    border-radius: 10px;
+    width: 280px;                 
+    text-align: center;
+  }
+
+  .reasons-container h3 {
+    margin-bottom: 8px;
+  }
+
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .gallery-item {
+    background: #222;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .gallery-item img {
+    max-width: 38%;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 768px) { /* Ajuste para telas menores */
+    .gallery {
+      grid-template-columns: repeat(2, 1fr); /* 2 colunas */
+    }
+  }
+
+  @media (max-width: 480px) { /* Ajuste para telas pequenas */
+    .gallery {
+      grid-template-columns: 1fr; /* 1 coluna */
+    }
+  }
+  .cta-section {
+    text-align: center;
+    padding: 20px;
+    background: gray;
+    color: black;
+  }
+  footer {
+    text-align: center;
+    padding: 10px;
+    background: #111;
+    font-size: 0.9em;
+  }
+  footer a {
+    color: white;
+    text-decoration: none;
+  }
