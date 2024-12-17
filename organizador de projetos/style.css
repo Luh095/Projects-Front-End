@@ -1,0 +1,141 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estrutura principal */
+body {
+    background: linear-gradient(#642B73, #C6426E);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* Header */
+header h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Novo Projeto */
+.add-project {
+    margin-bottom: 20px;
+}
+
+.add-project input {
+    width: 70%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-project button {
+    padding: 8px 15px;
+    border: none;
+    background-color: #a7287d;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+.add-project button:hover {
+    background-color: #882160;
+}
+
+/* Projetos */
+.projects-container h2 {
+    margin-bottom: 10px;
+}
+
+.project {
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+}
+
+.project h3 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.project button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    background-color: #dc35ce;
+    color: #fff;
+}
+
+.project button:hover {
+    background-color: #c823a4;
+}
+
+.task-input {
+    display: flex;
+    margin-top: 10px;
+}
+
+.task-input input {
+    flex-grow: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.task-input button {
+    margin-left: 5px;
+    padding: 5px 10px;
+    background-color: #e100ff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.task-input button:hover {
+    background-color: #9c00d9;
+}
+
+.task-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.task span {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+.task.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.task button {
+    background-color: #dc3575;
+}
