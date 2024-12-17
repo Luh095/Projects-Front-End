@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Login e Registro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" id="auth-container">
+        <!-- Inicialmente será o formulário de login -->
+        <div class="header">Login</div>
+        <div class="form"> 
+        <input type="email" id="email-id" name="email-id" class="input__email" placeholder="Email Address" required="">
+        <input type="password" id="login-password" name="senha-id" class="input__senha" placeholder="Password" required="">
+            <button onclick="login()">Entrar</button>
+            <a href="#" onclick="location.href='redefinir.html'">Esqueci minha senha</a>
+            <div class="toggle">
+                <p>Não tem uma conta? <a href="#" onclick="toggleAuthMode()">Registre-se</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const container = document.getElementById('auth-container');
+
+        function toggleAuthMode() {
+            const isLogin = container.querySelector('.header').innerText === 'Login';
+            container.innerHTML = isLogin ? getRegisterHTML() : getLoginHTML();
+        }
+
+        function getLoginHTML() {
+            return `
+                <div class="header">Login</div>
+                <div class="form">
+                    <input type="email" id="login-email" placeholder="Email">
+                    <input type="password" id="login-password" placeholder="Senha">
+                    <button onclick="login()">Entrar</button>
+                    <a href="#" onclick="location.href='redefinir.html'">Esqueci minha senha</a>
+                    <div class="toggle">
+                        <p>Não tem uma conta? <a href="#" onclick="toggleAuthMode()">Registre-se</a></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getRegisterHTML() {
+            return `
+                <div class="header">Registro</div>
+                <div class="form">  
+                <fieldset class="fieldset">
+                    <legend>Name:</legend>
+                    <input class="input" name="input" id="register-name" placeholder="Write here..." type="text" />
+                </fieldset>
+                <fieldset class="fieldset">
+                    <legend>Email:</legend>
+                    <input class="input" name="input" id="register-email" placeholder="Write here..." type="text" />
+                </fieldset>
+                <fieldset class="fieldset">
+                    <legend>Senha:</legend>
+                    <input class="input" name="input" id="register-password" placeholder="Write here..." type="text" />
+                </fieldset>
+                    <button onclick="register()">Registrar</button>
+                    <div class="toggle">
+                        <p>Já tem uma conta? <a href="#" onclick="toggleAuthMode()">Faça login</a></p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            alert(`Login efetuado com email: ${email}`);
+        }
+
+        function register() {
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            alert(`Conta registrada para: ${name}, Email: ${email}`);
+        }
+
+        function forgotPassword() {
+            alert('Redirecionando para recuperação de senha...');
+        }
+
+        function loginGoogle() {
+            alert('Redirecionando para login com Google...');
+        }
+
+        function loginLinkedIn() {
+            alert('Redirecionando para login com LinkedIn...');
+        }
+    </script>
+</body>
+</html>

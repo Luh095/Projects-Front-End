@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(#780206, #061161);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .reset-password-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        .reset-password-container h2 {
+            margin: 0 0 15px;
+            font-size: 24px;
+            color: #333;
+        }
+        .reset-password-container p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        .reset-password-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        .reset-password-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #a72828;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .reset-password-container button:hover {
+            background-color: #850101;
+        }
+        .reset-password-container .back-link {
+            display: block;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #a70606;
+            text-decoration: none;
+        }
+        .reset-password-container .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="reset-password-container">
+        <h2>Redefinir Senha</h2>
+        <p>Digite sua nova senha abaixo.</p>
+        <form action="/update-password" method="POST">
+            <input type="password" name="new_password" placeholder="Nova senha" required>
+            <input type="password" name="confirm_password" placeholder="Confirme a nova senha" required>
+            <button type="submit" onclick="location.href='concluiu.html'">Redefinir Senha</button>
+        </form>
+        <a class="back-link" onclick="location.href='index.html'">Voltar para o login</a>
+    </div>
+</body>
+</html>
