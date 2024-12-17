@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Ideias Criativas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gerador de Ideias Criativas</h1>
+        </header>
+
+        <!-- Seletor de categorias -->
+        <section class="category-selector">
+            <label for="category">Escolha uma categoria:</label>
+            <select id="category">
+                <option value="projetos">Ideias para Projetos</option>
+                <option value="empresas">Nomes de Empresas</option>
+                <option value="roteiros">Roteiros Criativos</option>
+            </select>
+            <button id="generate-btn">Gerar Ideia</button>
+        </section>
+
+        <!-- Resultado da geração -->
+        <section class="result">
+            <h2>Sua Ideia Criativa:</h2>
+            <div id="idea-output">Clique no botão para gerar uma ideia!</div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
