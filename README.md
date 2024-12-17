@@ -1,2 +1,2 @@
 # Projects-Front-End
-Alguns de meus projetos criados em Front-End
+Projetos realizados para sites web nas linguagens HTML, CSS e JavaScript
