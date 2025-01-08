@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Destino - Evento</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <a href="#cronograma">Cronograma</a>
+    <a href="#palestrantes">Palestrantes</a>
+    <a href="#inscricao">Inscrição</a>
+</nav>
+
+<header>
+    <h1>Bem-vindo ao Evento Incrível!</h1>
+    <p>Junte-se a nós para um dia cheio de aprendizado, inspiração e conexões.</p>
+    <div class="countdown">
+        <div id="days">00</div>
+        <div id="hours">00</div>
+        <div id="minutes">00</div>
+        <div id="seconds">00</div>
+    </div>
+</header>
+
+<section id="cronograma">
+    <h2>Cronograma</h2>
+    <p>Confira os horários e atividades programadas.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Horário</th>
+                <th>Atividade</th>
+                <th>Local</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>08:00 - 09:00</td>
+                <td>Café da Manhã e Credenciamento</td>
+                <td>Hall Principal</td>
+            </tr>
+            <tr>
+                <td>09:00 - 10:30</td>
+                <td>Palestra de Abertura</td>
+                <td>Auditório 1</td>
+            </tr>
+            <tr>
+                <td>10:30 - 11:00</td>
+                <td>Coffee Break</td>
+                <td>Área de Convivência</td>
+            </tr>
+            <tr>
+                <td>11:00 - 12:30</td>
+                <td>Workshop: Técnicas de Inovação</td>
+                <td>Sala 2</td>
+            </tr>
+            <tr>
+                <td>12:30 - 14:00</td>
+                <td>Almoço</td>
+                <td>Restaurante</td>
+            </tr>
+            <tr>
+                <td>14:00 - 15:30</td>
+                <td>Painel de Discussão: Futuro da Tecnologia</td>
+                <td>Auditório 1</td>
+            </tr>
+            <tr>
+                <td>15:30 - 16:00</td>
+                <td>Intervalo</td>
+                <td>Área de Convivência</td>
+            </tr>
+            <tr>
+                <td>16:00 - 17:30</td>
+                <td>Encerramento e Networking</td>
+                <td>Hall Principal</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="palestrantes">
+    <h2>Palestrantes</h2>
+    <p>Conheça os especialistas que compartilharão suas experiências.</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Tema da Palestra</th>
+                <th>Horário</th>
+                <th>Contato</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Dr. João Silva</td>
+                <td>Palestra de Abertura: Inovação Tecnológica no Brasil</td>
+                <td>09:00 - 10:30</td>
+                <td>joao.silva@email.com</td>
+            </tr>
+            <tr>
+                <td>Maria Oliveira</td>
+                <td>Workshop: Técnicas de Inovação</td>
+                <td>11:00 - 12:30</td>
+                <td>maria.oliveira@email.com</td>
+            </tr>
+            <tr>
+                <td>Carlos Souza</td>
+                <td>Painel de Discussão: Futuro da Tecnologia</td>
+                <td>14:00 - 15:30</td>
+                <td>carlos.souza@email.com</td>
+            </tr>
+            <tr>
+                <td>Ana Paula Santos</td>
+                <td>Encerramento e Networking</td>
+                <td>16:00 - 17:30</td>
+                <td>ana.santos@email.com</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section id="inscricao">
+    <h2>Inscreva-se</h2>
+    <p>Garanta sua vaga no evento agora mesmo!</p>
+    <button onclick="location.href='inscrever.html'" class="btn">Inscreva-se</button>
+</section>
+
+<footer>
+    <p>&copy; 2025 Evento Incrível. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    const countdown = () => {
+        const eventDate = new Date("2025-12-31T00:00:00").getTime();
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+
+        if (distance < 0) {
+            document.querySelector(".countdown").textContent = "O evento já começou!";
+        }
+    };
+
+    setInterval(countdown, 1000);
+</script>
+
+</body>
+</html>
