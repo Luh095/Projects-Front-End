@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Cartão de Visita</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Cartão de Visita</h1>
+        <div class="card-container">
+            <div class="card" id="businessCard">
+                <div class="front" id="cardFront">
+                    <h2 id="namePreview">Seu Nome</h2>
+                    <p id="rolePreview">Sua Profissão</p>
+                    <p id="contactPreview">seuemail@exemplo.com</p>
+                </div>
+                <div class="back" id="cardBack">
+                    <p>Adicione informações do verso aqui.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <input type="text" id="nameInput" placeholder="Nome" />
+            <input type="text" id="roleInput" placeholder="Profissão" />
+            <input type="text" id="contactInput" placeholder="Contato" />
+            <select id="fontSelector">
+                <option value="Arial">Arial</option>
+                <option value="Georgia">Georgia</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Tahoma">Tahoma</option>
+            </select>
+            <input type="color" id="colorPicker" value="#333333" />
+            <input type="color" id="bgColorPicker" value="#ffffff" />
+        </div>
+    </div>
+
+    <script>
+        const card = document.getElementById('businessCard');
+        const namePreview = document.getElementById('namePreview');
+        const rolePreview = document.getElementById('rolePreview');
+        const contactPreview = document.getElementById('contactPreview');
+        const cardFront = document.getElementById('cardFront');
+
+        // Input elements
+        const nameInput = document.getElementById('nameInput');
+        const roleInput = document.getElementById('roleInput');
+        const contactInput = document.getElementById('contactInput');
+        const fontSelector = document.getElementById('fontSelector');
+        const colorPicker = document.getElementById('colorPicker');
+        const bgColorPicker = document.getElementById('bgColorPicker');
+
+        // Update text fields dynamically
+        nameInput.addEventListener('input', () => {
+            namePreview.textContent = nameInput.value || 'Seu Nome';
+        });
+
+        roleInput.addEventListener('input', () => {
+            rolePreview.textContent = roleInput.value || 'Sua Profissão';
+        });
+
+        contactInput.addEventListener('input', () => {
+            contactPreview.textContent = contactInput.value || 'seuemail@exemplo.com';
+        });
+
+        // Update font family
+        fontSelector.addEventListener('change', () => {
+            const font = fontSelector.value;
+            cardFront.style.fontFamily = font;
+        });
+
+        // Update font color
+        colorPicker.addEventListener('input', () => {
+            const color = colorPicker.value;
+            cardFront.style.color = color;
+        });
+
+        // Update background color
+        bgColorPicker.addEventListener('input', () => {
+            const bgColor = bgColorPicker.value;
+            cardFront.style.backgroundColor = bgColor;
+        });
+
+        // Flip card animation
+        card.addEventListener('click', () => {
+            card.classList.toggle('flip');
+        });
+    </script>
+</body>
+</html>
