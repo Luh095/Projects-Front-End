@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronograma Diário</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Cronograma Diário</h1>
+        <div class="relógio" id="relogio"></div>
+    </header>
+
+    <div class="cronograma">
+        <div class="parte-do-dia manhã">
+            <h2>Manhã</h2>
+            <p>Planeje sua manhã: café da manhã, exercícios, tarefas importantes.</p>
+        </div>
+        <div class="parte-do-dia tarde">
+            <h2>Tarde</h2>
+            <p>Planeje sua tarde: trabalho, estudos, reuniões.</p>
+        </div>
+        <div class="parte-do-dia noite">
+            <h2>Noite</h2>
+            <p>Planeje sua noite: lazer, jantar, relaxamento.</p>
+        </div>
+    </div>
+
+    <div class="calendário">
+        <!-- Exemplo de dias de um mês -->
+        <div class="dia">1</div>
+        <div class="dia">2</div>
+        <div class="dia">3</div>
+        <div class="dia">4</div>
+        <div class="dia">5</div>
+        <div class="dia">6</div>
+        <div class="dia">7</div>
+        <div class="dia">8</div>
+        <div class="dia">9</div>
+        <div class="dia">10</div>
+        <div class="dia">11</div>
+        <div class="dia">12</div>
+        <div class="dia">13</div>
+        <div class="dia">14</div>
+        <div class="dia">15</div>
+        <div class="dia">16</div>
+        <div class="dia">17</div>
+        <div class="dia">18</div>
+        <div class="dia">19</div>
+        <div class="dia">20</div>
+        <div class="dia">21</div>
+        <div class="dia">22</div>
+        <div class="dia">23</div>
+        <div class="dia">24</div>
+        <div class="dia">25</div>
+        <div class="dia">26</div>
+        <div class="dia">27</div>
+        <div class="dia">28</div>
+        <div class="dia">29</div>
+        <div class="dia">30</div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 - Cronograma Diário</p>
+    </footer>
+
+    <script>
+        function atualizarRelogio() {
+            const agora = new Date();
+            const horas = String(agora.getHours()).padStart(2, '0');
+            const minutos = String(agora.getMinutes()).padStart(2, '0');
+            const segundos = String(agora.getSeconds()).padStart(2, '0');
+            document.getElementById('relogio').textContent = `${horas}:${minutos}:${segundos}`;
+        }
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+    </script>
+</body>
+</html>
