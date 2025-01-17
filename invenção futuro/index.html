@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invenções do Futuro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Invenções do Futuro</h1>
+        <p>Compartilhe sua ideia para uma invenção incrível e explore as ideias de outras pessoas!</p>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>Compartilhe sua ideia</h2>
+            <form id="inventionForm">
+                <label for="title">Título da Invenção</label>
+                <input type="text" id="title" name="title" placeholder="Digite o título da sua invenção" required>
+
+                <label for="description">Descrição</label>
+                <textarea id="description" name="description" rows="5" placeholder="Descreva sua invenção aqui..." required></textarea>
+
+                <button type="submit">Enviar Ideia</button>
+            </form>
+        </div>
+
+        <section>
+            <h2>Invenções Compartilhadas</h2>
+            <ul class="inventions-list" id="inventionsList">
+                <!-- As invenções compartilhadas aparecerão aqui -->
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('inventionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+
+            if (title && description) {
+                const inventionsList = document.getElementById('inventionsList');
+
+                const newInvention = document.createElement('li');
+                newInvention.classList.add('invention');
+                newInvention.innerHTML = `
+                    <h3>${title}</h3>
+                    <p>${description}</p>
+                `;
+
+                inventionsList.appendChild(newInvention);
+
+                document.getElementById('inventionForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

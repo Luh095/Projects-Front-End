@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #faaca8;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: linear-gradient(#ED4264, #FFEDBC);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+main {
+    padding: 20px;
+}
+.form-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+.form-container h2 {
+    margin-top: 0;
+}
+.form-container label {
+    display: block;
+    margin: 10px 0 5px;
+}
+.form-container input, .form-container textarea, .form-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form-container button {
+    background-color: #af4c6d;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.form-container button:hover {
+    background-color: #a04572;
+}
+.inventions-list {
+    list-style: none;
+    padding: 0;
+}
+.invention {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.invention h3 {
+    margin: 0 0 10px;
+}
