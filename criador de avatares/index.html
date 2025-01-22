@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Avatares</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Criador de Avatares em Pixel Art</h1>
+
+    <div id="avatar"></div>
+
+    <div class="controls">
+        <label>Cor atual:</label>
+        <div id="selectedColor" class="color-box" style="background-color: #000;"></div>
+        <br><br>
+        <label>Escolha uma cor:</label>
+        <div class="color-box" style="background-color: #000;" onclick="selectColor('#000')"></div>
+        <div class="color-box" style="background-color: #f00;" onclick="selectColor('#f00')"></div>
+        <div class="color-box" style="background-color: #0f0;" onclick="selectColor('#0f0')"></div>
+        <div class="color-box" style="background-color: #00f;" onclick="selectColor('#00f')"></div>
+        <div class="color-box" style="background-color: #ff0;" onclick="selectColor('#ff0')"></div>
+        <div class="color-box" style="background-color: #fff;" onclick="selectColor('#fff')"></div>
+    </div>
+
+    <button onclick="clearAvatar()">Limpar Avatar</button>
+
+    <script>
+        const avatar = document.getElementById('avatar');
+        const selectedColorBox = document.getElementById('selectedColor');
+        let selectedColor = '#000';
+
+        // Cria a grade de pixels
+        for (let i = 0; i < 100; i++) {
+            const pixel = document.createElement('div');
+            pixel.classList.add('pixel');
+            pixel.style.backgroundColor = '#fff';
+            pixel.addEventListener('click', () => {
+                pixel.style.backgroundColor = selectedColor;
+            });
+            avatar.appendChild(pixel);
+        }
+
+        // Seleciona a cor atual
+        function selectColor(color) {
+            selectedColor = color;
+            selectedColorBox.style.backgroundColor = color;
+        }
+
+        // Limpa o avatar
+        function clearAvatar() {
+            const pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.style.backgroundColor = '#fff');
+        }
+    </script>
+</body>
+</html>
