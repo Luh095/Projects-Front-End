@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escritor de Cartas Automatizadas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Escritor de Cartas Automatizadas</h1>
+    <div class="container">
+        <div class="form-group">
+            <label for="tipoCarta">Selecione o tipo de carta:</label>
+            <select id="tipoCarta">
+                <option value="formal">Formal</option>
+                <option value="romantica">Romântica</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nomeDestinatario">Nome do destinatário:</label>
+            <input type="text" id="nomeDestinatario" placeholder="Exemplo: João">
+        </div>
+        <div class="form-group">
+            <button onclick="gerarCarta()">Gerar Carta</button>
+        </div>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        function gerarCarta() {
+            const tipoCarta = document.getElementById("tipoCarta").value;
+            const nomeDestinatario = document.getElementById("nomeDestinatario").value || "Amigo(a)";
+
+            let carta = "";
+
+            if (tipoCarta === "formal") {
+                carta = `
+                    Prezado(a) ${nomeDestinatario},
+                    
+                    Espero que esta mensagem o(a) encontre bem. Venho, por meio desta, expressar minha gratidão pelo apoio e dedicação que você tem demonstrado recentemente. Sua competência e profissionalismo são verdadeiramente inspiradores.
+                    
+                    Coloco-me à disposição para quaisquer esclarecimentos ou futuras colaborações. Agradeço pela atenção e espero que possamos continuar a construir juntos um caminho de sucesso.
+                    
+                    Atenciosamente,
+                    [Seu Nome]
+                `;
+            } else if (tipoCarta === "romantica") {
+                carta = `
+                    Meu querido(a) ${nomeDestinatario},
+                    
+                    Desde o momento em que nossos olhares se cruzaram, meu coração soube que você seria especial. Cada instante ao seu lado é um presente, e minhas palavras nunca serão suficientes para descrever o que sinto.
+                    
+                    Quero que saiba que você é a razão dos meus sorrisos e o motivo de meus sonhos mais doces. Prometo cuidar de você com todo meu amor e dedicar cada momento a fazê-lo(a) feliz.
+                    
+                    Com todo o meu amor,
+                    [Seu Nome]
+                `;
+            }
+
+            const outputDiv = document.getElementById("output");
+            outputDiv.textContent = carta.trim();
+        }
+    </script>
+</body>
+</html>
