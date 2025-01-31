@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criador de Avatares</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Criador de Avatares em Pixel Art</h1>
+
+    <div class="input-container">
+        <label for="gridSize">Tamanho da grade:</label>
+        <input type="number" id="gridSize" min="5" max="50" value="10">
+        <button onclick="changeGridSize()">Alterar Tamanho</button>
+    </div>
+
+    <div class="input-container">
+        <label for="pixelSize">Tamanho dos pixels:</label>
+        <input type="number" id="pixelSize" min="5" max="50" value="20">
+        <button onclick="changePixelSize()">Alterar Tamanho dos Pixels</button>
+    </div>
+
+    <div id="avatar"></div>
+
+    <div class="controls">
+        <label>Cor atual:</label>
+        <div id="selectedColor" class="color-box" style="background-color: #000;"></div>
+        <br><br>
+        <label>Escolha uma cor:</label>
+        <div class="color-box" style="background-color: #000;" onclick="selectColor('#000')"></div>
+        <div class="color-box" style="background-color: #f00;" onclick="selectColor('#f00')"></div>
+        <div class="color-box" style="background-color: #0f0;" onclick="selectColor('#0f0')"></div>
+        <div class="color-box" style="background-color: #00f;" onclick="selectColor('#00f')"></div>
+        <div class="color-box" style="background-color: #ff0;" onclick="selectColor('#ff0')"></div>
+        <div class="color-box" style="background-color: #fff;" onclick="selectColor('#fff')"></div>
+    </div>
+
+    <button onclick="clearAvatar()">Limpar Avatar</button>
+
+    <script>
+        const avatar = document.getElementById('avatar');
+        const selectedColorBox = document.getElementById('selectedColor');
+        let selectedColor = '#000';
+        let gridSize = 10;
+        let pixelSize = 20;
+
+        // Cria a grade de pixels
+        function createGrid(size) {
+            avatar.innerHTML = '';
+            avatar.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+            avatar.style.gridTemplateRows = `repeat(${size}, 1fr)`;
+            for (let i = 0; i < size * size; i++) {
+                const pixel = document.createElement('div');
+                pixel.classList.add('pixel');
+                pixel.style.width = `${pixelSize}px`;
+                pixel.style.height = `${pixelSize}px`;
+                pixel.style.backgroundColor = '#fff';
+                pixel.addEventListener('click', () => {
+                    pixel.style.backgroundColor = selectedColor;
+                });
+                avatar.appendChild(pixel);
+            }
+        }
+
+        // Seleciona a cor atual
+        function selectColor(color) {
+            selectedColor = color;
+            selectedColorBox.style.backgroundColor = color;
+        }
+
+        // Limpa o avatar
+        function clearAvatar() {
+            const pixels = document.querySelectorAll('.pixel');
+            pixels.forEach(pixel => pixel.style.backgroundColor = '#fff');
+        }
+
+        // Altera o tamanho da grade
+        function changeGridSize() {
+            const newSize = parseInt(document.getElementById('gridSize').value);
+            if (newSize >= 5 && newSize <= 50) {
+                gridSize = newSize;
+                createGrid(gridSize);
+            } else {
+                alert('Por favor, insira um tamanho entre 5 e 50.');
+            }
+        }
+
+        // Altera o tamanho dos pixels
+        function changePixelSize() {
+            const newPixelSize = parseInt(document.getElementById('pixelSize').value);
+            if (newPixelSize >= 5 && newPixelSize <= 50) {
+                pixelSize = newPixelSize;
+                createGrid(gridSize);
+            } else {
+                alert('Por favor, insira um tamanho entre 5 e 50.');
+            }
+        }
+
+        // Inicializa a grade padrão
+        createGrid(gridSize);
+    </script>
+</body>
+</html>
