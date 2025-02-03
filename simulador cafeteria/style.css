@@ -1,0 +1,79 @@
+body {
+    background: linear-gradient(to bottom, #8B5A2B, #D2B48C);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: #4B2E2E;
+}
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.cup {
+    width: 100px;
+    height: 100px;
+    background: url('https://cdn-icons-png.flaticon.com/512/590/590836.png') no-repeat center;
+    background-size: contain;
+    margin: 20px auto;
+    position: relative;
+}
+.steam {
+    width: 4px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    animation: steam 2s infinite ease-in-out;
+}
+@keyframes steam {
+    0% { opacity: 0; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-10px); }
+    100% { opacity: 0; transform: translateY(-20px); }
+}
+.menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.item {
+    margin: 10px;
+    padding: 10px;
+    background: #F5DEB3;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+.item img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+}
+.cart {
+    margin-top: 20px;
+    padding: 10px;
+    background: #FFF8DC;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+button {
+    background: #6F4E37;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+button:hover {
+    background: #4B2E2E;
+    transform: scale(1.05);
+}
+button:active {
+    background: #3A1E1E;
+    transform: scale(1);
+}

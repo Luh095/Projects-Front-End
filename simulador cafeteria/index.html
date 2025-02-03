@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Cafeteria</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        /*let cart = [];
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCart();
+        }
+        function updateCart() {
+            const cartContainer = document.getElementById("cart");
+            cartContainer.innerHTML = "<h2>Carrinho</h2>";
+            let total = 0;
+            cart.forEach(({ item, price }) => {
+                cartContainer.innerHTML += `<p>${item} - R$${price.toFixed(2)}</p>`;
+                total += price;
+            });
+            cartContainer.innerHTML += `<h3>Total: R$${total.toFixed(2)}</h3>`;
+        } */
+         /*let cart = [];
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+            window.location.href = "carrinho.html";
+        } */
+        function addToCart(item, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push({ item, price });
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo à Nossa Cafeteria</h1>
+        <div class="cup">
+            <div class="steam"></div>
+        </div>
+        <h2>Cardápio</h2>
+        <div class="menu">
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWGikQRPyxyS0rAMRA56iTOwb2h7D8jLNxJw&s" alt="Café Expresso">
+                <p>Café Expresso - R$5,00</p>
+                <button onclick="addToCart('Café Expresso', 5.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR54P_TU5BeSuJbfwgtn9nC2i69qO0GDpDcRw&s" alt="Cappuccino">
+                <p>Cappuccino - R$7,00</p>
+                <button onclick="addToCart('Cappuccino', 7.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://s2-receitas.glbimg.com/k0nzFrKQLIZkeea64BU9UDSJFcE=/0x0:1200x675/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_1f540e0b94d8437dbbc39d567a1dee68/internal_photos/bs/2024/K/X/fFpGqOT5WDgcrFB4aaBQ/chocolate-quente-com-conhaque.jpg" alt="Chocolate Quente">
+                <p>Chocolate Quente - R$6,00</p>
+                <button onclick="addToCart('Chocolate Quente', 6.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://lirp.cdn-website.com/33406c6e/dms3rep/multi/opt/historia-do-croissant-1920w.jpg" alt="Croissant">
+                <p>Croissant - R$6,00</p>
+                <button onclick="addToCart('Croissant', 6.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://minhasreceitinhas.com.br/wp-content/uploads/2023/06/torta-de-chocolate-tudo-gostoso.jpg" alt="Torta de Chocolate">
+                <p>Torta de Chocolate - R$6,50</p>
+                <button onclick="addToCart('Torta de Chocolate', 6.50)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://i.ytimg.com/vi/wnr6oDe-IXk/maxresdefault.jpg" alt="Pastel">
+                <p>Pastel - R$8,00</p>
+                <button onclick="addToCart('Pastel', 8.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://lh3.googleusercontent.com/proxy/s6fbyd9Os9mfihDx37cHftvKqWyIWZyJ3u6yotDqyl0SKXGbwHWjApa2oe0ksHp8jy_wrHNBHD9erqw2tm5awYKkayz1FQGxg5PheS70KUTCx5I" alt="Mini Cachorrinhos">
+                <p>Mini Cachorrinhos - R$7,00</p>
+                <button onclick="addToCart('Mini Cachorrinhos', 7.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://cdn.abrahao.com.br/base/dca/b23/5bb/suco-natural-morango.jpg" alt="Suco Natural Morango">
+                <p>Suco Natural Morango - R$6,00</p>
+                <button onclick="addToCart('Suco Natural Morango', 6.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/474x/09/13/44/091344b095fafc6d95d133382a2fca9c.jpg" alt="Suco Natural Moracujá">
+                <p>Suco Natural Maracujá - R$6,00</p>
+                <button onclick="addToCart('Suco Natural Maracujá', 6.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://www.comidaereceitas.com.br/wp-content/uploads/2017/01/suco_abacaxi_especial-250x167.jpg" alt="Suco Natural Abacaxi">
+                <p>Suco Natural Abacaxi - R$6,00</p>
+                <button onclick="addToCart('Suco Natural Abacaxi', 6.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://img.cdndsgni.com/preview/11828855.jpg" alt="Sanduiche de Presunto e Queijo">
+                <p>Sanduiche de Presunto e Queijo - R$7,00</p>
+                <button onclick="addToCart('Sanduiche de Presunto e Queijo', 7.00)">Adicionar ao Carrinho</button>
+            </div>
+            <div class="item">
+                <img src="https://moinhoglobo.com.br/wp-content/uploads/2019/10/13-donuts-scaled.jpg" alt="Donut">
+                <p>Donut - R$5,00</p>
+                <button onclick="addToCart('Donut', 5.00)">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+        <button onclick="window.location.href='carrinho.html'">Ver Carrinho</button>
+    </div>
+</body>
+</html>
