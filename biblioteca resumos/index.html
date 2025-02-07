@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca de Resumos</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Biblioteca de Resumos</h1>
+        <nav>
+            <ul>
+                <li><button class="filter-btn" data-category="livro">Livros</button></li>
+                <li><button class="filter-btn" data-category="filme">Filmes</button></li>
+                <li><button class="filter-btn" data-category="escolar">Temas Escolares</button></li>
+            </ul>
+        </nav>
+        <input type="text" id="search" placeholder="Buscar resumos...">
+    </header>
+
+    
+    <main>
+        <section id="resumos-container">
+            <div class="resumo" data-category="livro" style="display: none;">
+                <h3>Dom Casmurro</h3>
+                <p>Dom Casmurro é um romance realista de Machado de Assis que conta a história de Bento Santiago, um homem rico que narra sua própria vida. O livro foi publicado em 1899 e se passa no Rio de Janeiro do Segundo Reinado. A história começa com Bentinho, ainda adolescente, apaixonado por Capitu, sua vizinha de infância. No entanto, a mãe de Bentinho, Dona Glória, prometeu que ele seria padre. Bentinho frequenta o seminário, mas abandona a vida religiosa para se formar em Direito e se casar com Capitu. O livro é marcado por conflitos, como a promessa de Bentinho de ser padre e a suspeita de que Capitu o traiu. O ciúmes de Bentinho é um dos principais temas da obra. </p>
+                <img src="https://www.vestibulandoweb.com.br/wp-content/uploads/2019/01/dom-casmurro-machado-de-assis.jpg" alt="Dom Casmurro">
+            </div>
+            
+            <div class="resumo" data-category="filme" style="display: none;">
+                <h3>Interestelar</h3>
+                <p>Interestelar é um filme de ficção científica de 2014, dirigido por Christopher Nolan. O filme conta a história de um grupo de astronautas que viajam pelo espaço em busca de um novo lar para a humanidade. </p>
+                <img src="https://i0.wp.com/cloud.estacaonerd.com/wp-content/uploads/2025/01/10083155/interstellar.jpg?fit=1557%2C877&ssl=1" alt="Interestelar">
+            
+            </div>
+            
+            <div class="resumo" data-category="escolar" style="display: none;">
+                <h3>Revolução Francesa</h3>
+                <p>A Revolução Francesa foi um movimento político e social que ocorreu entre 1789 e 1799 na França. O evento foi marcado pelo fim do Antigo Regime e pela instauração da República Francesa. </p>
+                <img src="https://www.politize.com.br/wp-content/uploads/2024/07/revolucao-francesa-politize-2.jpg" alt="">
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Biblioteca de Resumos. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
