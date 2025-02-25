@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Corrida Simples</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background-color: #222;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: white;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        #restartButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            display: none; /* Escondido até o jogo acabar */
+            cursor: pointer;
+        }
+
+        #restartButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div id="score">Pontuação: 0</div>
+    <canvas id="gameCanvas"></canvas>
+    <button id="restartButton">Reiniciar Jogo</button>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+        const restartButton = document.getElementById('restartButton');
+
+        canvas.width = 600;
+        canvas.height = 800;
+
+        let score = 0;
+        let gameSpeed = 3;
+
+        // Carro
+        const carWidth = 80;
+        const carHeight = 50;
+        let carX = canvas.width / 2 - carWidth / 2;
+        let carY = canvas.height - carHeight - 10;
+
+        const obstacles = [];
+        const coneBaseWidth = 40;
+        const coneHeight = 60;
+
+        let isGameOver = false;
+
+        // Movimento do Carro
+        let carSpeed = 0;
+
+        // Controle das teclas
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+                carSpeed = -5;
+            } else if (event.key === 'ArrowRight') {
+                carSpeed = 5;
+            }
+        });
+
+        document.addEventListener('keyup', () => {
+            carSpeed = 0;
+        });
+
+        // Função para gerar obstáculos (cones)
+        function createObstacle() {
+            const x = Math.random() * (canvas.width - coneBaseWidth);
+            const y = -coneHeight;
+            obstacles.push({ x, y });
+        }
+
+        // Função para desenhar o carro
+        function drawCar(x, y) {
+            ctx.fillStyle = '#00f';
+            ctx.beginPath();
+            ctx.moveTo(x + carWidth / 2, y); // topo do carro
+            ctx.lineTo(x, y + carHeight); // ponto inferior esquerdo
+            ctx.lineTo(x + carWidth, y + carHeight); // ponto inferior direito
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Função para desenhar os cones
+        function drawCone(x, y) {
+            ctx.fillStyle = 'orange';
+            ctx.beginPath();
+            ctx.moveTo(x + coneBaseWidth / 2, y); // topo do cone
+            ctx.lineTo(x, y + coneHeight); // ponto inferior esquerdo
+            ctx.lineTo(x + coneBaseWidth, y + coneHeight); // ponto inferior direito
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Função para atualizar o jogo
+        function update() {
+            if (isGameOver) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Atualiza a posição do carro
+            carX += carSpeed;
+            if (carX < 0) carX = 0;
+            if (carX + carWidth > canvas.width) carX = canvas.width - carWidth;
+
+            // Desenha o carro
+            drawCar(carX, carY);
+
+            // Desenha e move os cones
+            obstacles.forEach((obstacle, index) => {
+                obstacle.y += gameSpeed;
+                drawCone(obstacle.x, obstacle.y);
+
+                // Verifica colisão com o carro
+                if (
+                    obstacle.y + coneHeight > carY &&
+                    obstacle.x < carX + carWidth &&
+                    obstacle.x + coneBaseWidth > carX
+                ) {
+                    gameOver();
+                }
+
+                // Remove cones que saem da tela
+                if (obstacle.y > canvas.height) {
+                    obstacles.splice(index, 1);
+                    score++;
+                }
+            });
+
+            // Cria novos cones
+            if (Math.random() < 0.02) {
+                createObstacle();
+            }
+
+            // Atualiza a pontuação
+            scoreElement.textContent = `Pontuação: ${score}`;
+
+            // Atualiza a velocidade
+            if (score % 10 === 0 && score !== 0) {
+                gameSpeed += 0.1; // Aumenta a velocidade do jogo a cada 10 pontos
+            }
+
+            // Continuar o jogo
+            requestAnimationFrame(update);
+        }
+
+        // Função para acabar o jogo
+        function gameOver() {
+            isGameOver = true;
+            ctx.fillStyle = 'white';
+            ctx.font = '50px Arial';
+            ctx.fillText('Game Over', canvas.width / 2 - 150, canvas.height / 2);
+            ctx.font = '20px Arial';
+            ctx.fillText(`Pontuação final: ${score}`, canvas.width / 2 - 70, canvas.height / 2 + 50);
+
+            // Exibe o botão de reiniciar
+            restartButton.style.display = 'inline-block';
+        }
+
+        // Função para reiniciar o jogo
+        function restartGame() {
+            // Reseta as variáveis do jogo
+            score = 0;
+            gameSpeed = 3;
+            carX = canvas.width / 2 - carWidth / 2;
+            carY = canvas.height - carHeight - 10;
+            obstacles.length = 0; // Limpa os obstáculos
+            isGameOver = false;
+
+            // Esconde o botão de reiniciar
+            restartButton.style.display = 'none';
+
+            // Reinicia a pontuação
+            scoreElement.textContent = `Pontuação: ${score}`;
+
+            // Inicia o jogo novamente
+            update();
+        }
+
+        // Adiciona o evento de clique para o botão de reiniciar
+        restartButton.addEventListener('click', restartGame);
+
+        // Iniciar o jogo
+        update();
+    </script>
+</body>
+</html>
