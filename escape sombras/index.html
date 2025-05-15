@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Escape das Sombras</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #game {
+      position: relative;
+      width: 600px;
+      height: 600px;
+      background: #111;
+      overflow: hidden;
+      border: 3px solid #333;
+      border-radius: 10px;
+    }
+
+    .player, .enemy, .door {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+    }
+
+    .player {
+      background-color: limegreen;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .enemy {
+      background-color: crimson;
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    .door {
+      background-color: gold;
+      border-radius: 5px;
+      width: 40px;
+      height: 40px;
+      z-index: 1;
+    }
+
+    #overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 600px;
+      height: 600px;
+      background: rgba(0, 0, 0, 0.85);
+      color: white;
+      font-size: 2rem;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 5;
+    }
+
+    #restartBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #restartBtn:hover {
+      background-color: #cc0000;
+    }
+  </style>
+</head>
+<body>
+
+<div id="game">
+  <div id="player" class="player"></div>
+  <div id="enemy" class="enemy"></div>
+  <div id="door" class="door"></div>
+  <div id="overlay">
+    <div id="overlayText">Game Over</div>
+    <button id="restartBtn">Recomeçar</button>
+  </div>
+</div>
+
+<script>
+  const gameSize = 600;
+  const tileSize = 30;
+  const cols = gameSize / tileSize;
+  const rows = gameSize / tileSize;
+
+  const player = document.getElementById("player");
+  const enemy = document.getElementById("enemy");
+  const door = document.getElementById("door");
+  const overlay = document.getElementById("overlay");
+  const overlayText = document.getElementById("overlayText");
+  const restartBtn = document.getElementById("restartBtn");
+
+  let playerPos = { x: 1, y: 1 };
+  let enemyPos = { x: 18, y: 18 };
+  let doorPos = { x: 10, y: 10 };
+  let level = 1;
+  let enemySpeed = 600;
+  let gameLoop;
+
+  function setPosition(element, pos) {
+    element.style.left = pos.x * tileSize + "px";
+    element.style.top = pos.y * tileSize + "px";
+  }
+
+  function renderPositions() {
+    setPosition(player, playerPos);
+    setPosition(enemy, enemyPos);
+    setPosition(door, doorPos);
+  }
+
+  function resetPositions() {
+    playerPos = { x: 1, y: 1 };
+    enemyPos = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+    doorPos = { x: Math.floor(Math.random() * cols), y: Math.floor(Math.random() * rows) };
+  }
+
+  function movePlayer(dx, dy) {
+    let newX = playerPos.x + dx;
+    let newY = playerPos.y + dy;
+
+    if (newX >= 0 && newX < cols && newY >= 0 && newY < rows) {
+      playerPos.x = newX;
+      playerPos.y = newY;
+      renderPositions();
+      checkCollision();
+    }
+  }
+
+  function moveEnemyTowardPlayer() {
+    if (enemyPos.x < playerPos.x) enemyPos.x++;
+    else if (enemyPos.x > playerPos.x) enemyPos.x--;
+
+    if (enemyPos.y < playerPos.y) enemyPos.y++;
+    else if (enemyPos.y > playerPos.y) enemyPos.y--;
+
+    renderPositions();
+    checkCollision();
+  }
+
+  function checkCollision() {
+    if (playerPos.x === enemyPos.x && playerPos.y === enemyPos.y) {
+      gameOver();
+    }
+
+    if (playerPos.x === doorPos.x && playerPos.y === doorPos.y) {
+      nextLevel();
+    }
+  }
+
+  function gameOver() {
+    clearInterval(gameLoop);
+    overlayText.textContent = "💀 GAME OVER";
+    overlay.style.display = "flex";
+  }
+
+  function nextLevel() {
+    clearInterval(gameLoop);
+    level++;
+    enemySpeed = Math.max(200, enemySpeed - 50); // Aumenta a velocidade
+    overlayText.textContent = `✅ Fase ${level - 1} completa! Próxima fase...`;
+    overlay.style.display = "flex";
+
+    setTimeout(() => {
+      overlay.style.display = "none";
+      startGame();
+    }, 2000);
+  }
+
+  function startGame() {
+    resetPositions();
+    renderPositions();
+    clearInterval(gameLoop);
+    gameLoop = setInterval(moveEnemyTowardPlayer, enemySpeed);
+    overlay.style.display = "none";
+  }
+
+  document.addEventListener("keydown", (e) => {
+    switch (e.key) {
+      case "ArrowUp": movePlayer(0, -1); break;
+      case "ArrowDown": movePlayer(0, 1); break;
+      case "ArrowLeft": movePlayer(-1, 0); break;
+      case "ArrowRight": movePlayer(1, 0); break;
+    }
+  });
+
+  restartBtn.addEventListener("click", () => {
+    level = 1;
+    enemySpeed = 600;
+    overlay.style.display = "none";
+    startGame();
+  });
+
+  // Inicia o jogo
+  startGame();
+</script>
+</body>
+</html>
