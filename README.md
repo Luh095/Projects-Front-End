@@ -1,2 +1,2 @@
 # Projects-Front-End
-Projetos realizados para sites web nas linguagens HTML, CSS e JavaScript
+Projetos realizados para sites, jogos web nas linguagens HTML, CSS e JavaScript
