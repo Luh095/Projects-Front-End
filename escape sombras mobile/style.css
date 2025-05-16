@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+  color: #fff;
+  font-family: sans-serif;
+}
+#gameContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #222;
+}
+.player, .monster, .door, .wall {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+}
+.player {
+  background: lime;
+  border-radius: 50%;
+}
+.monster {
+  background: url('https://img.freepik.com/fotos-premium/um-demonio-assustador-do-inferno-olha-para-o-quadro_132453-21842.jpg') no-repeat center;
+  background-size: cover;
+}
+.door {
+  background: gold;
+  border-radius: 5px;
+}
+.wall {
+  background: gray;
+}
+#message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8);
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  text-align: center;
+  z-index: 10;
+}
+#restartBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+}
+.controls {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.control-btn {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #fff;
+  user-select: none;
+}
