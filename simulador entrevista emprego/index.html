@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de Entrevistas de Emprego</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #6C5B7B;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    .question p {
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #af4caa;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #feedback {
+      background: #e0ffe0;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Simulador de Entrevista</h1>
+    <div class="question" id="questionContainer">
+      <p id="questionText">Carregando pergunta...</p>
+      <textarea id="answer" placeholder="Digite sua resposta aqui..."></textarea>
+      <button onclick="submitAnswer()">Enviar Resposta</button>
+    </div>
+    <div id="feedback"></div>
+  </div>
+
+  <script>
+    const questions = [
+      "Fale sobre você.",
+      "Quais são seus maiores pontos fortes?",
+      "Qual foi seu maior desafio profissional?",
+      "Onde você se vê em 5 anos?",
+      "Por que devemos contratá-lo?"
+    ];
+
+    let currentQuestion = 0;
+    document.getElementById('questionText').innerText = questions[currentQuestion];
+
+    function submitAnswer() {
+      const answer = document.getElementById('answer').value.trim();
+      if (!answer) {
+        alert("Por favor, digite uma resposta.");
+        return;
+      }
+
+      const feedback = analyzeAnswer(answer);
+      document.getElementById('feedback').style.display = 'block';
+      document.getElementById('feedback').innerText = feedback;
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        setTimeout(() => {
+          document.getElementById('feedback').style.display = 'none';
+          document.getElementById('answer').value = '';
+          document.getElementById('questionText').innerText = questions[currentQuestion];
+        }, 3000);
+      } else {
+        setTimeout(() => {
+          document.getElementById('questionContainer').innerHTML = '<h2>Entrevista Finalizada!</h2><p>Parabéns por concluir o simulador.</p>';
+          document.getElementById('feedback').style.display = 'none';
+        }, 3500);
+      }
+    }
+
+    function analyzeAnswer(text) {
+      const length = text.split(' ').length;
+      if (length < 10) {
+        return "Sua resposta está muito curta. Tente desenvolver mais suas ideias.";
+      } else if (length > 40) {
+        return "Boa resposta! Você desenvolveu bem seu raciocínio.";
+      } else {
+        return "Resposta razoável, mas você pode dar mais detalhes ou exemplos.";
+      }
+    }
+  </script>
+</body>
+</html>
