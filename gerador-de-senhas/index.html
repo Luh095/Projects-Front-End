@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gerador de Senhas Seguras</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>Gerador de Senhas Seguras</h1>
+    <p class="lead">Crie senhas aleatórias fortes com letras, números e símbolos. Ajuste o tamanho, escolha os tipos de caracteres e copie.</p>
+
+    <div class="controls">
+      <div class="column">
+        <label for="length">Tamanho da senha: <strong id="lengthLabel">16</strong></label>
+        <input id="lengthRange" type="range" min="4" max="128" value="16" />
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <input id="lengthNumber" type="number" min="4" max="128" value="16" />
+        </div>
+
+        <hr style="margin:12px 0;border:0;border-top:1px solid rgba(255,255,255,0.03)">
+
+        <div class="checkbox"><input id="lower" type="checkbox" checked /><label for="lower">Letras minúsculas (a-z)</label></div>
+        <div class="checkbox"><input id="upper" type="checkbox" checked /><label for="upper">Letras maiúsculas (A-Z)</label></div>
+        <div class="checkbox"><input id="numbers" type="checkbox" checked /><label for="numbers">Números (0-9)</label></div>
+        <div class="checkbox"><input id="symbols" type="checkbox" checked /><label for="symbols">Símbolos (!@#$...)</label></div>
+        <div class="checkbox"><input id="excludeSimilar" type="checkbox" /><label for="excludeSimilar">Excluir caracteres similares (i, l, 1, O, 0)</label></div>
+
+        <div style="margin-top:12px"><button id="generate">Gerar senha</button></div>
+
+      </div>
+
+      <div class="column">
+        <label class="muted">Senha gerada</label>
+        <div class="output" style="margin-top:6px">
+          <div id="passwordOutput" class="password" aria-live="polite">—</div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <button id="copyBtn">Copiar</button>
+            <button id="refreshBtn" class="secondary" title="Gerar outra">↻</button>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label class="muted">Força estimada</label>
+          <div class="meter" aria-hidden="true"><span id="meterBar"></span></div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px"><small id="entropyText" class="muted">0 bits</small><small id="recommendation" class="muted">—</small></div>
+    </div>
+  </main>
+<script src="script.js"></script>
+</body>
+</html>
