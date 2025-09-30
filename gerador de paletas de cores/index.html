@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gerador de Paletas Aleatórias</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app" role="main">
+    <header>
+      <div>
+        <h1>Gerador de Paletas Aleatórias</h1>
+        <div style="color:rgba(230,238,248,0.7);font-size:13px">Clique em "Gerar" ou aperte <strong>G</strong>. Clique em uma cor para copiar o hexadecimal.</div>
+      </div>
+    </header>
+
+    <section class="controls" aria-label="Controles">
+      <button id="generate" class="btn primary">Gerar paleta</button>
+
+      <div class="range-wrap" style="margin-left:8px">
+        <label for="count">Cores:</label>
+        <input id="count" type="range" min="2" max="8" value="5" />
+        <div id="countLabel" style="min-width:28px;text-align:center">5</div>
+      </div>
+
+      <button id="copyAll" class="btn">Copiar todos</button>
+      <button id="lockBtn" class="btn" aria-pressed="false">🔒 Bloquear aleatoriedade</button>
+    </section>
+
+    <section class="top-row">
+      <div style="color:rgba(230,238,248,0.7)">Paleta atual</div>
+      <div class="actions">
+        <button id="exportJSON" class="btn">Exportar JSON</button>
+        <button id="shuffle" class="btn">Embaralhar apenas ordem</button>
+      </div>
+    </section>
+
+    <section id="palette" class="palette" aria-live="polite" aria-label="Paleta de cores">
+      <!-- swatches injetados por JS -->
+    </section>
+
+    <div class="footer">Dica: clique no botão <strong>Copiar</strong> em cada cor para copiar apenas o código hex. Desenvolvido em HTML/CSS/JS.</div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
