@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Catálogo de Receitas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Catálogo de Receitas</h1>
+        <small>Pesquise, filtre por categoria e explore receitas com imagens.</small>
+      </div>
+
+      <div class="controls">
+        <div class="search" role="search" aria-label="Pesquisar receitas">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="11" cy="11" r="6" stroke="#9CA3AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <input id="searchInput" type="search" placeholder="Pesquisar por nome ou ingrediente..." />
+        </div>
+        <div class="toolbar">
+          <button id="clearBtn" class="btn secondary" title="Limpar filtros">Limpar</button>
+        </div>
+      </div>
+    </header>
+
+    <section class="filters" aria-label="Filtros">
+      <strong>Filtrar por categoria:</strong>
+      <div class="categories" id="categoryList" role="list"></div>
+    </section>
+
+    <main>
+      <section id="recipesGrid" class="grid" aria-live="polite"></section>
+      <div id="emptyState" class="empty" style="display:none">Nenhuma receita encontrada.</div>
+    </main>
+
+
+  </div>
+
+  <script>
+    // --- Dados de exemplo ---
+    const RECIPES = [
+      {id:1, title:'Bolo de Chocolate', desc:'Bolo fofinho de chocolate com cobertura cremosa.', img:'https://cloudfront-us-east-1.images.arcpublishing.com/estadao/25HQQTDV6RCY3B44ZJ7VLCSB5M.jpg', categories:['Doce','Vegetariano'], link:'receitas/bolo.html'},
+      {id:2, title:'Escondidinho de Carne', desc:'Purê de mandioca com recheio temperado de carne.', img:'https://receitatodahora.com.br/wp-content/uploads/2023/05/escondidinho-de-batata-17-05.jpg', categories:['Salgado'], link:'receitas/escondidinho.html'},
+      {id:3, title:'Salada Mediterrânea', desc:'Tomate, pepino, azeitonas e queijo fresco.', img:'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2025/01/salada-mediterranea-de-rao-de-bico.jpg', categories:['Vegetariano','Salgado'], link:'receitas/salada.html'},
+      {id:4, title:'Panquecas Americanas', desc:'Panquecas fofas servidas com mel e frutas.', img:'https://static.itdg.com.br/images/640-auto/565ca3dc50df7f00cfb645a63cecbf4e/pan-baixa.jpg', categories:['Doce'], link:'receitas/panqueca.html'},
+      {id:5, title:'Curry de Grão-de-bico', desc:'Curry vegano cremoso com especiarias.', img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8tmEZfPqf8PfRY-qm8X0-sTb5IeFBxRezTA&s', categories:['Vegano','Salgado'], link:'receitas/curry.html'},
+      {id:6, title:'Mousse de Maracujá', desc:'Sobremesa cítrica e refrescante.', img:'https://static.itdg.com.br/images/360-240/8fed8f60d3c8e3990396e2478cbc7f2a/shutterstock-1905617575-1-.jpg', categories:['Doce','Sobremesa'], link:'receitas/mousse.html'},
+      {id:7, title:'Brigadeiro', desc:'Docinho brasileiro de chocolate.', img:'https://canaldareceita.com.br/wp-content/uploads/2025/01/BRIGADEIRO-DE-CREME-DE-LEITE.jpg.webp', categories:['Doce','Sobremesa'], link:'receitas/brigadeiro.html'},
+      {id:8, title:'Suco Verde', desc:'Refrescante com couve, maçã e limão.', img:'https://www.ameclinica.com/blog/wp-content/uploads/2017/07/suco-verde-1.jpg', categories:['Bebida','Vegano'], link:'receitas/suco.html'},
+      {id:9, title:'Feijoada', desc:'Tradicional prato brasileiro com feijão e carnes.', img:'https://canaldareceita.com.br/wp-content/uploads/2025/05/Feijoada-Completa.jpg', categories:['Salgado'], link:'receitas/feijoada.html'},
+      {id:10, title:'Pizza Margherita', desc:'Pizza clássica com tomate, queijo e manjericão.', img:'https://www.comidaereceitas.com.br/img/sizeswp/1200x675/2024/02/pizza-marguerita-com-mozzarella-de-bufala.jpg', categories:['Vegetariano','Salgado'], link:'receitas/pizza.html'},
+      {id:11, title:'Lasanha à Bolonhesa', desc:'Massa em camadas com molho de carne.', img:'https://static.itdg.com.br/images/360-240/ec2a5e38702c60bf1ace0b5f1c8e9415/shutterstock-739787011.jpg', categories:['Salgado'], link:'receitas/lasanha.html'},
+      {id:12, title:'Tapioca Doce', desc:'Recheada com coco e leite condensado.', img:'https://cdn.casaeculinaria.com/wp-content/uploads/2023/10/17141549/Tapioca-doce-1.webp', categories:['Doce','Vegetariano'], link:'receitas/tapioca.html'}
+    ];
+
+    // --- Lógica de UI ---
+    const categoriesSet = new Set();
+    RECIPES.forEach(r => r.categories.forEach(c => categoriesSet.add(c)));
+    const CATEGORIES = Array.from(categoriesSet).sort();
+
+    const categoryListEl = document.getElementById('categoryList');
+    const recipesGrid = document.getElementById('recipesGrid');
+    const searchInput = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('clearBtn');
+    const emptyState = document.getElementById('emptyState');
+
+    let activeCategories = new Set();
+    let query = '';
+
+    function createCategoryPill(name){
+      const btn = document.createElement('button');
+      btn.className = 'category';
+      btn.type = 'button';
+      btn.dataset.value = name;
+      btn.dataset.active = 'false';
+      btn.innerHTML = `<span>${name}</span>`;
+      btn.addEventListener('click', () => toggleCategory(name, btn));
+      return btn;
+    }
+
+    function toggleCategory(name, btn){
+      if(activeCategories.has(name)){
+        activeCategories.delete(name);
+        btn.dataset.active = 'false';
+      } else {
+        activeCategories.add(name);
+        btn.dataset.active = 'true';
+      }
+      applyFilters();
+    }
+
+    function renderCategoryPills(){
+      CATEGORIES.forEach(cat => categoryListEl.appendChild(createCategoryPill(cat)));
+    }
+
+    function recipeCard(recipe){
+      const div = document.createElement('article');
+      div.className = 'card';
+      div.innerHTML = `
+        <img src="${recipe.img}" alt="Foto de ${recipe.title}" loading="lazy"/>
+        <div class="card-body">
+          <h3 class="title">${recipe.title}</h3>
+          <p class="desc">${recipe.desc}</p>
+          <div class="tags">${recipe.categories.map(c=>`<span class="tag">${c}</span>`).join('')}</div>
+        </div>
+      `;
+      div.addEventListener('click', () => {
+        if(recipe.link){
+          window.open(recipe.link, '_blank');
+        }
+      });
+      return div;
+    }
+
+    function applyFilters(){
+      query = searchInput.value.trim().toLowerCase();
+      const filtered = RECIPES.filter(r => {
+        const text = (r.title + ' ' + r.desc).toLowerCase();
+        const matchesQuery = query === '' ? true : text.includes(query);
+        const matchesCategory = activeCategories.size === 0 ? true : r.categories.some(c => activeCategories.has(c));
+        return matchesQuery && matchesCategory;
+      });
+      renderRecipes(filtered);
+    }
+
+    function renderRecipes(list){
+      recipesGrid.innerHTML = '';
+      if(list.length === 0){
+        emptyState.style.display = 'block';
+      } else {
+        emptyState.style.display = 'none';
+      }
+      list.forEach(r => recipesGrid.appendChild(recipeCard(r)));
+    }
+
+    // eventos
+    searchInput.addEventListener('input', ()=> applyFilters());
+    clearBtn.addEventListener('click', ()=>{
+      searchInput.value = '';
+      activeCategories.clear();
+      document.querySelectorAll('.category').forEach(p => { p.dataset.active='false'; });
+      applyFilters();
+      searchInput.focus();
+    });
+
+    // inicialização
+    renderCategoryPills();
+    renderRecipes(RECIPES);
+
+
+  </script>
+</body>
+</html>
