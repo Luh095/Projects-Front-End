@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cronômetro & Pomodoro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <!-- Cronômetro simples -->
+    <section class="card" aria-labelledby="simple-title">
+      <h1 id="simple-title">Cronômetro simples</h1>
+      <div style="display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap">
+        <label class="small">Minutos
+          <input id="simple-min" type="number" min="0" value="0" aria-label="Minutos" />
+        </label>
+        <label class="small">Segundos
+          <input id="simple-sec" type="number" min="0" max="59" value="30" aria-label="Segundos" />
+        </label>
+      </div>
+      <div class="display" id="simple-display">00:30</div>
+      <div class="controls">
+        <button id="simple-start">Iniciar</button>
+        <button id="simple-pause" class="secondary">Pausar</button>
+        <button id="simple-reset" class="secondary">Reset</button>
+      </div>
+      <div class="small">Use valores nos campos e clique em Iniciar. Timer roda em segundos.</div>
+    </section>
+
+    <!-- Pomodoro -->
+    <section class="card" aria-labelledby="pom-title">
+      <h1 id="pom-title">Pomodoro (25 / 5)</h1>
+      <div class="progress-wrap">
+        <div class="circle">
+          <!-- SVG progress ring -->
+          <svg id="prog-svg" width="120" height="120" viewBox="0 0 120 120" aria-hidden>
+            <defs>
+              <linearGradient id="g" x1="0%" x2="100%">
+                <stop offset="0%" stop-color="#60a5fa" />
+                <stop offset="100%" stop-color="#34d399" />
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="48" stroke="rgba(255,255,255,0.06)" stroke-width="12" fill="none"></circle>
+            <circle id="ring" cx="60" cy="60" r="48" stroke="url(#g)" stroke-width="12" stroke-linecap="round" fill="none" stroke-dasharray="302" stroke-dashoffset="0" transform="rotate(-90 60 60)"></circle>
+            <text id="ring-text" x="50%" y="54%" fill="white" font-size="18" font-weight="700" text-anchor="middle"></text>
+          </svg>
+        </div>
+        <div>
+          <div id="pom-display" class="display">25:00</div>
+          <div class="controls">
+            <button id="pom-start">Iniciar</button>
+            <button id="pom-pause" class="secondary">Pausar</button>
+            <button id="pom-skip" class="secondary">Pular</button>
+            <button id="pom-reset" class="secondary">Reset</button>
+          </div>
+          <div class="session-info" id="pom-info">Sessão: Foco • Ciclos completos: 0</div>
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+        <label class="small">Foco (min)
+          <input id="focus-min" type="number" min="1" value="25" />
+        </label>
+        <label class="small">Descanso (min)
+          <input id="break-min" type="number" min="1" value="5" />
+        </label>
+        <label class="small">Ciclos
+          <input id="cycles" type="number" min="1" value="4" />
+        </label>
+      </div>
+
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
