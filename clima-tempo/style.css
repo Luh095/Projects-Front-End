@@ -1,0 +1,82 @@
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #00b4d8, #0077b6);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-box button {
+  background-color: #00b4d8;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.search-box button:hover {
+  background-color: #0096c7;
+}
+
+.weather-info {
+  margin-top: 2rem;
+}
+
+.weather-info img {
+  width: 100px;
+}
+
+.weather-info h2 {
+  margin: 10px 0;
+}
+
+.temp {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+/* Efeito de loading */
+.loading {
+  animation: pulse 1.5s infinite;
+  opacity: 0.8;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
