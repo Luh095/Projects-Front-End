@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Cinemática</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Seção Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Experimente o Futuro</h1>
+      <p>Design cinematográfico com rolagem suave e movimento sincronizado.</p>
+      <button class="btn" onclick="navigateTo('about.html')">Saiba mais</button>
+    </div>
+    <video autoplay muted loop playsinline preload="auto" class="hero-video">
+      <source src="videos/cinematic.mp4" type="video/mp4">
+    </video>
+  </section>
+
+  <!-- Seção 1 -->
+  <section class="section" data-speed="0.3">
+    <div class="content">
+      <h2>Desempenho além do comum</h2>
+      <p>Com transições suaves e uma experiência de rolagem envolvente, esta página mostra o poder da web moderna.</p>
+    </div>
+  </section>
+
+  <!-- Seção 2 -->
+  <section class="section dark" data-speed="0.6">
+    <div class="content">
+      <h2>Interatividade inteligente</h2>
+      <p>Elementos reagem ao movimento, criando uma sensação fluida e cinematográfica.</p>
+    </div>
+  </section>
+
+  <!-- Seção final -->
+  <section class="final">
+    <h2>Prepare-se para o próximo nível.</h2>
+    <p>Um design que se move com você.</p>
+    <button class="btn" onclick="navigateTo('start.html')">Começar agora</button>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
