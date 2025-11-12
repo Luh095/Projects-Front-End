@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeria - Infinity</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* === FUNDO ANIMADO === */
+    body {
+      background: radial-gradient(circle at center, #000 0%, #030b12 100%);
+      background-size: 120% 120%;
+      color: #e0e0e0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 60px 5%;
+      overflow: hidden;
+      animation: bgZoom 20s ease-in-out infinite alternate;
+      position: relative;
+    }
+
+    @keyframes bgZoom {
+      from { background-size: 120% 120%; }
+      to { background-size: 150% 150%; }
+    }
+
+    /* === ESTRELAS FLUTUANTES === */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0.8;
+      border-radius: 50%;
+      animation: twinkle linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.6); }
+    }
+
+    /* === TRANSIÇÕES CINEMATOGRÁFICAS === */
+    body.fade-in { animation: fadeInBody 1.5s ease forwards; }
+    body.fade-out { animation: fadeOutBody 1s ease forwards; }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: scale(1.02); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeOutBody {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(1.02); }
+    }
+
+    /* === CONTEÚDO PRINCIPAL === */
+    .gallery {
+      max-width: 1100px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 1.5s ease-out;
+      z-index: 2;
+      position: relative;
+    }
+
+    .gallery h1 {
+      font-size: 2.8rem;
+      letter-spacing: 4px;
+      color: #00ffff;
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      justify-items: center;
+      margin-bottom: 50px;
+    }
+
+    .cards img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 18px;
+      box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .cards img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+    }
+
+    /* === BOTÃO VOLTAR === */
+    button {
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      padding: 12px 35px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00ffff;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ffff;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === LIGHTBOX === */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      animation: fadeInLightbox 0.5s ease;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+      animation: zoomIn 0.6s ease;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 40px;
+      font-size: 2.5rem;
+      color: #00ffff;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .close-btn:hover {
+      color: #ffffff;
+      transform: scale(1.1);
+    }
+
+    /* === SETAS DE NAVEGAÇÃO === */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 3rem;
+      color: #00ffff;
+      cursor: pointer;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+    .arrow:hover {
+      color: #ffffff;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .arrow.left {
+      left: 40px;
+    }
+
+    .arrow.right {
+      right: 40px;
+    }
+
+    @keyframes fadeInLightbox {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.9); opacity: 0.6; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <!-- Camada de estrelas -->
+  <div class="stars" id="stars"></div>
+
+  <section class="gallery">
+    <h1>Galeria</h1>
+    <div class="cards">
+      <img src="https://plus.unsplash.com/premium_photo-1682124081095-a3ec5e67924f?q=80&w=1877&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Cena 1">
+      <img src="https://plus.unsplash.com/premium_photo-1682124897429-c0d9b842f2f4?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Cena 2">
+      <img src="https://plus.unsplash.com/premium_photo-1715268499398-106c97ad78d1?q=80&w=1877&auto=format&fit=crop&ixlib=rb-4.1.0" alt="Cena 3">
+      <img src="https://plus.unsplash.com/premium_photo-1682124726112-9a9a55f04f32?q=80&w=1634&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Cena 4">
+    </div>
+    <button id="backButton">Voltar</button>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <span class="arrow left" id="prevBtn">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Imagem ampliada">
+    <span class="arrow right" id="nextBtn">&#10095;</span>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    /* === EFEITO DE SAÍDA CINEMATOGRÁFICA === */
+    const backButton = document.getElementById("backButton");
+    backButton.addEventListener("click", () => {
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 900);
+    });
+
+    /* === ESTRELAS FLUTUANTES === */
+    const starsContainer = document.getElementById("stars");
+    const numStars = 100;
+
+    for (let i = 0; i < numStars; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDuration = 2 + Math.random() * 4 + "s";
+      star.style.animationDelay = Math.random() * 4 + "s";
+      star.style.width = star.style.height = Math.random() * 2 + "px";
+      starsContainer.appendChild(star);
+    }
+
+    /* === LIGHTBOX COM NAVEGAÇÃO === */
+    const images = document.querySelectorAll(".cards img");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const closeBtn = document.getElementById("closeBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    let currentIndex = 0;
+
+    images.forEach((img, index) => {
+      img.addEventListener("click", () => {
+        lightbox.style.display = "flex";
+        lightboxImg.src = img.src;
+        currentIndex = index;
+      });
+    });
+
+    function showImage(index) {
+      if (index < 0) index = images.length - 1;
+      if (index >= images.length) index = 0;
+      lightboxImg.src = images[index].src;
+      currentIndex = index;
+    }
+
+    prevBtn.addEventListener("click", () => showImage(currentIndex - 1));
+    nextBtn.addEventListener("click", () => showImage(currentIndex + 1));
+    closeBtn.addEventListener("click", () => lightbox.style.display = "none");
+
+    // Fecha ao clicar fora da imagem
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) lightbox.style.display = "none";
+    });
+
+    // Navegação via teclado ← →
+    document.addEventListener("keydown", (e) => {
+      if (lightbox.style.display === "flex") {
+        if (e.key === "ArrowLeft") showImage(currentIndex - 1);
+        if (e.key === "ArrowRight") showImage(currentIndex + 1);
+        if (e.key === "Escape") lightbox.style.display = "none";
+      }
+    });
+  </script>
+</body>
+</html>

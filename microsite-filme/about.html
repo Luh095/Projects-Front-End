@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre - Infinity</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* === FUNDO ANIMADO === */
+    body {
+      background: radial-gradient(circle at center, #000 0%, #030b12 100%);
+      background-size: 120% 120%;
+      color: #e0e0e0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      padding: 80px 8%;
+      overflow: hidden;
+      animation: bgZoom 25s ease-in-out infinite alternate;
+      position: relative;
+    }
+
+    @keyframes bgZoom {
+      from { background-size: 120% 120%; }
+      to { background-size: 150% 150%; }
+    }
+
+    /* === CAMADA DE ESTRELAS / POEIRA ESTELAR === */
+    .stars, .dust {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star, .dust-particle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    .star {
+      width: 2px;
+      height: 2px;
+      background: white;
+      animation: twinkle 4s linear infinite;
+    }
+
+    .dust-particle {
+      width: 4px;
+      height: 4px;
+      background: rgba(0, 255, 255, 0.4);
+      filter: blur(1px);
+      animation: floatDust 8s linear infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.6); }
+    }
+
+    @keyframes floatDust {
+      0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+      50% { transform: translateY(-60px) translateX(20px) scale(1.2); opacity: 1; }
+      100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+    }
+
+    /* === TRANSIÇÕES CINEMATOGRÁFICAS === */
+    body.fade-in { animation: fadeInBody 1.5s ease forwards; }
+    body.fade-out { animation: fadeOutBody 1s ease forwards; }
+
+    @keyframes fadeInBody {
+      from { opacity: 0; transform: scale(1.02); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeOutBody {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(1.02); }
+    }
+
+    /* === CONTEÚDO === */
+    .about {
+      max-width: 900px;
+      text-align: center;
+      line-height: 1.8;
+      z-index: 2;
+      animation: fadeInText 1.8s ease-out;
+    }
+
+    .about h1 {
+      font-size: 3rem;
+      letter-spacing: 4px;
+      color: #00ffff;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+    }
+
+    .about p {
+      font-size: 1.15rem;
+      color: #c7e9f1;
+      margin-bottom: 40px;
+      text-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+    }
+
+    button {
+      background: transparent;
+      border: 2px solid #00ffff;
+      color: #00ffff;
+      padding: 12px 35px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #00ffff;
+      color: #000;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00ffff;
+    }
+
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="fade-in">
+  <!-- Camadas cósmicas -->
+  <div class="stars" id="stars"></div>
+  <div class="dust" id="dust"></div>
+
+  <section class="about">
+    <h1>Sobre o Projeto</h1>
+    <p>
+      Em um futuro não muito distante, a humanidade alcançou o auge da sua evolução tecnológica — mas perdeu o sentido do que significa ser humana. Entre ruínas de antigas metrópoles e estações orbitais esquecidas, uma descoberta muda tudo: um buraco de luz encontrado nos limites do sistema solar, emanando sinais de vida de um universo paralelo.
+    </p>
+    <p>
+      A cientista <strong>Ava Solaris</strong>, movida pelo luto da perda de seu filho, lidera a missão <strong>INFINITY</strong> — uma jornada interestelar para atravessar a fenda e desvendar o que existe além do tempo e da matéria. Ao lado do enigmático <strong>Dr. Orion</strong> e da inteligência artificial <strong>Nova</strong>, a tripulação parte rumo ao desconhecido, sem garantia de retorno.
+    </p>
+    <p>
+      Mas conforme a nave se aproxima do portal, algo desperta. Ecos do passado e fragmentos do futuro começam a se entrelaçar, revelando que o espaço e o tempo talvez sejam apenas ilusões criadas pela mente humana.
+    </p>
+    <p>
+      Em meio a visões, paradoxos e escolhas impossíveis, Ava descobre que a resposta não está nas estrelas — mas dentro de si mesma. <em>“Infinity”</em> é uma história sobre o amor que transcende dimensões, sobre o preço da descoberta e sobre o eterno desejo humano de compreender o infinito.
+    </p>
+    <button id="backButton">Voltar</button>
+  </section>
+
+  <script>
+    /* === TRANSIÇÃO CINEMATOGRÁFICA === */
+    const backButton = document.getElementById("backButton");
+    backButton.addEventListener("click", () => {
+      document.body.classList.add("fade-out");
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 900);
+    });
+
+    /* === ESTRELAS E POEIRA ESTELAR === */
+    const starsContainer = document.getElementById("stars");
+    const dustContainer = document.getElementById("dust");
+
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.top = Math.random() * 100 + "%";
+      star.style.left = Math.random() * 100 + "%";
+      star.style.animationDelay = Math.random() * 5 + "s";
+      star.style.animationDuration = 2 + Math.random() * 4 + "s";
+      starsContainer.appendChild(star);
+    }
+
+    for (let i = 0; i < 50; i++) {
+      const dust = document.createElement("div");
+      dust.classList.add("dust-particle");
+      dust.style.top = Math.random() * 100 + "%";
+      dust.style.left = Math.random() * 100 + "%";
+      dust.style.animationDelay = Math.random() * 10 + "s";
+      dust.style.animationDuration = 6 + Math.random() * 8 + "s";
+      dustContainer.appendChild(dust);
+    }
+  </script>
+</body>
+</html>
